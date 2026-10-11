@@ -21,7 +21,7 @@
     .metric .label{color:var(--muted);font-size:13px}.metric .value{font-size:28px;font-weight:800;margin-top:3px;letter-spacing:-.03em}.metric .hint{font-size:12px;color:var(--muted);margin-top:1px}
     main{padding:22px 0 56px}.callout{display:flex;gap:12px;align-items:flex-start;background:#fff;border-left:4px solid var(--blue);border-radius:12px;padding:15px 17px;margin:4px 0 18px;box-shadow:0 4px 14px rgba(23,54,93,.05)}
     .callout b{color:var(--navy)}.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0 14px}.search{flex:1;min-width:240px;position:relative}
-    input{width:100%;height:44px;border:1px solid #d6dce5;border-radius:11px;padding:0 14px 0 40px;font:inherit;background:#fff;outline:none}input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(47,111,237,.12)}
+    input,.week-select{height:44px;border:1px solid #d6dce5;border-radius:11px;font:inherit;background:#fff;outline:none}input{width:100%;padding:0 14px 0 40px}input:focus,.week-select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(47,111,237,.12)}.week-select{padding:0 34px 0 13px;font-weight:700;color:var(--navy);min-width:170px}
     .search:before{content:"⌕";position:absolute;left:14px;top:5px;font-size:24px;color:#748096}.filters{display:flex;gap:7px;flex-wrap:wrap}.filter{border:1px solid #d6dce5;background:#fff;color:#42526a;border-radius:999px;padding:9px 14px;font-weight:700;cursor:pointer}
     .filter.active{background:var(--navy);border-color:var(--navy);color:#fff}.view-actions{margin-left:auto;display:flex;gap:7px}.ghost{border:1px solid #d6dce5;background:#fff;border-radius:10px;padding:9px 12px;cursor:pointer;color:#42526a;font-weight:700}
     .table-shell{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 25px rgba(23,54,93,.055)}table{width:100%;border-collapse:separate;border-spacing:0;min-width:1120px}
@@ -39,9 +39,9 @@
   </style>
 </head>
 <body>
-  <header class="top"><div class="wrap"><div class="eyebrow">DAPI Dashboard · Weekly Operations</div><h1>생활가전 경영혁신그룹 업무 대시보드</h1><p class="sub">현재 조회: 2026년 41주차 · 원본 업무 순서 유지 · 최종 기준 2026.10.08</p></div></header>
+  <header class="top"><div class="wrap"><div class="eyebrow">DAPI Dashboard · Weekly Operations</div><h1>생활가전 경영혁신그룹 업무 대시보드</h1><p class="sub" id="currentWeekLabel">현재 조회: 2026년 41주차 · 원본 업무 순서 유지 · 최종 기준 2026.10.08</p></div></header>
   <div class="wrap summary" aria-label="업무 현황 요약">
-    <div class="metric"><div class="label">전체 업무</div><div class="value" id="totalCount">15</div><div class="hint">원본 1~15번</div></div>
+      <div class="metric"><div class="label">선택 주차 업무</div><div class="value" id="totalCount">15</div><div class="hint" id="weekCountHint">누적 1개 주차</div></div>
     <div class="metric"><div class="label">진행중</div><div class="value" style="color:var(--green)" id="progressCount">13</div><div class="hint">계획에 따라 추진 중</div></div>
     <div class="metric"><div class="label">보류·지연</div><div class="value" style="color:var(--red)" id="holdCount">1</div><div class="hint">재협의 필요</div></div>
     <div class="metric"><div class="label">예정</div><div class="value" style="color:var(--amber)" id="plannedCount">1</div><div class="hint">일정 확정</div></div>
@@ -49,6 +49,7 @@
   <main class="wrap">
     <div class="callout"><div>●</div><div><b>W41 핵심:</b> 유통재고 상승 대응과 공급 제약 강화가 중심입니다. D.WOS 확정, AI 셀아웃 자동화 시작, 신규 모델 제약 편입이 차주 주요 일정입니다.</div></div>
     <div class="controls">
+      <select id="weekSelect" class="week-select" aria-label="조회 주차"><option value="W41">2026 W41 · 10월 8일</option></select>
       <div class="search"><input id="search" type="search" placeholder="업무명·진행사항·차주계획 검색" aria-label="업무 검색" /></div>
       <div class="filters" role="group" aria-label="상태 필터">
         <button class="filter active" data-status="전체">전체</button><button class="filter" data-status="진행중">진행중</button><button class="filter" data-status="보류/지연">보류·지연</button><button class="filter" data-status="예정">예정</button>
@@ -60,7 +61,7 @@
     <div class="foot"><span>출처: 가전 경영혁신 그룹 주차별 To-Do List_W41_20261008.xlsx · Week 41</span><span>담당자는 원본에 명시된 경우만 표시</span></div>
   </main>
   <script>
-  const tasks = [
+  const weeklyData = { W41: [
     {n:1,name:'총, 부진, 유통재고 대책 및 목표 수립(~연말)',status:'진행중',owner:'',now:['2년 초과 SET 재고 약 3.2천대·17억원 확인','2년 초과 옵션물 비중 12.2%, 약 92억원','냉장고 WOS 적정비 W40 103% → W41 112%','동남아 134%, 서남아 126%로 유통재고 악화','’27년 D.WOS 산출 결과 및 마스터 오류 분석'],next:['D.WOS 검토·보정 마감: ~10/14','D.WOS 최종 확정: 10/15','T.WOS 입력·조정 검토: 10/16~11/2','동남아·서남아 냉장고 재고 대책 집중 점검']},
     {n:2,name:'ARGUS 활용, 원자재 및 제상품 부진재고 관리',status:'진행중',owner:'',now:['W40 추가 생산모델 제안 및 Tracking 결과 10/6 점검·공지','SOP 기준 부진재고 소진 예상액 약 34.5억원','제안모델 약 70%가 기존 모델과 중복','제상품 관련 오류·개선 VOC 19건 등록 진행 중'],next:['W42부터 제안모델 확대 검토','상위 150개 모델 선정','RAC 짝맞춤, 공급 BOD 정보 등 개선 VOC 후속 조치','사업부·생산법인 ARGUS 활용률 지속 점검']},
     {n:3,name:'경영혁신그룹 AX 추진',status:'진행중',owner:'조아현P · 양재영P',now:['사업부 등록 과제 5건 및 부서 자체 과제 5건 관리','Wifi 분석 Dashboard 진행','실행계획 수립 자동화 관련 DA·PI 업무 분석 완료','결재 유형분류 1차 자동화 적용 완료','Task Dashboard 및 To-do List 관리방안 정리'],next:['Dashboard 실시간 업데이트 및 주간 히스토리 관리','To-do List 월요일 아침 예약발송 운영','RPA·Windows Task Scheduler 등을 통한 자동 메일 발송 검토','Gauss Agent 챗봇과 Task Dashboard 연계 추진']},
@@ -76,16 +77,18 @@
     {n:13,name:'SEDA KD PSI 개선협의',status:'진행중',owner:'',now:['SEDA KD 현 운영 프로세스 확인 완료','W41부터 ROH 시스템·실물 일치 여부 점검','BOM 연계 KD/ROH 레벨 재고 시뮬레이션 진행'],next:['W42까지 수기 PSI와 KD 시뮬레이션 정합성 검증·보완','W43 재고 관리방안 확정 후 SCM 개발 협의']},
     {n:14,name:'Flakt 업무 이관 검토(HVAC 전략 → GO)',status:'진행중',owner:'',now:['10/6 자사·일반소싱·Flakt 업무 비교 리뷰','제품 PLC, 수요, PO 운영, 물동 프로세스 분석','프로젝트성 모델의 코드 생성·단종 처리방식 확인'],next:['W42 관련부서 미팅 진행','리뷰 결과를 바탕으로 부서 간 역할과 책임 재분배 검토']},
     {n:15,name:'CFO DA 현안협의회',status:'예정',owner:'',now:['총재고·부진재고·유통재고 현황 준비','9월말·10월말·12월말 기준 자료 정리','빌트인 경영관리 기준 개선안 준비'],next:['10/12 15:00~16:00 협의회 진행','협의 결과 및 후속 조치사항 정리']}
-  ];
+  ] };
   const statusClass=s=>s==='진행중'?'progress':s==='예정'?'planned':'hold';
   const list=a=>`<ul>${a.map(x=>`<li>${x}</li>`).join('')}</ul>`;
-  let active='전체';
-  function render(){const q=document.querySelector('#search').value.trim().toLowerCase();const filtered=tasks.filter(t=>(active==='전체'||t.status===active)&&(!q||[t.name,t.owner,...t.now,...t.next].join(' ').toLowerCase().includes(q)));
+  const weekMeta={W41:{label:'2026년 41주차',date:'2026.10.08'}};
+  let active='전체',selectedWeek='W41';
+  function render(){const tasks=weeklyData[selectedWeek]||[];const q=document.querySelector('#search').value.trim().toLowerCase();const filtered=tasks.filter(t=>(active==='전체'||t.status===active)&&(!q||[t.name,t.owner,...t.now,...t.next].join(' ').toLowerCase().includes(q)));
+    document.querySelector('#totalCount').textContent=tasks.length;document.querySelector('#progressCount').textContent=tasks.filter(t=>t.status==='진행중').length;document.querySelector('#holdCount').textContent=tasks.filter(t=>t.status==='보류/지연').length;document.querySelector('#plannedCount').textContent=tasks.filter(t=>t.status==='예정').length;document.querySelector('#weekCountHint').textContent=`누적 ${Object.keys(weeklyData).length}개 주차`;const meta=weekMeta[selectedWeek];document.querySelector('#currentWeekLabel').textContent=`현재 조회: ${meta.label} · 원본 업무 순서 유지 · 최종 기준 ${meta.date}`;
     document.querySelector('#taskRows').innerHTML=filtered.map(t=>`<tr><td><div class="task-name">${t.n}. ${t.name}</div></td><td><span class="badge ${statusClass(t.status)}">${t.status}</span></td><td>${t.owner}</td><td>${list(t.now)}</td><td>${list(t.next)}</td></tr>`).join('');
     document.querySelector('#taskCards').innerHTML=filtered.map(t=>`<article class="card"><div class="card-head"><h2>${t.n}. ${t.name}</h2><span class="badge ${statusClass(t.status)}">${t.status}</span></div>${t.owner?`<div class="meta">담당자 · ${t.owner}</div>`:''}<div class="section"><h3>당주 진행사항</h3>${list(t.now)}</div><div class="section"><h3>차주 계획</h3>${list(t.next)}</div></article>`).join('');
     document.querySelector('#empty').style.display=filtered.length?'none':'block';
   }
-  document.querySelector('#search').addEventListener('input',render);document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');active=b.dataset.status;render()}));render();
+  document.querySelector('#weekSelect').addEventListener('change',e=>{selectedWeek=e.target.value;document.querySelector('#search').value='';render()});document.querySelector('#search').addEventListener('input',render);document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');active=b.dataset.status;render()}));render();
   </script>
 </body>
 </html>
