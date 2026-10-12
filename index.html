@@ -28,7 +28,7 @@
     th{position:sticky;top:0;z-index:10;background:var(--navy);color:#fff;text-align:left;font-size:13px;padding:14px 15px;border-right:1px solid rgba(255,255,255,.18);white-space:nowrap;box-shadow:0 2px 5px rgba(23,54,93,.18)}th:last-child{border-right:0}
     td{vertical-align:top;padding:15px;border-bottom:1px solid var(--line);font-size:13.5px}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#fafcff}
     .col-name{width:28%;min-width:245px}.col-status{width:8%;min-width:78px}.col-owner{width:11%;min-width:95px}.col-collab{width:15%;min-width:125px}.col-start,.col-complete{width:9%;min-width:78px}.col-reference{width:20%;min-width:150px}
-    .task-name{font-weight:800;color:var(--navy);letter-spacing:-.015em}.stacked{line-height:1.55}.stacked span{display:block}.stacked span+span{margin-top:3px}.task-main td{border-bottom:0;padding-bottom:9px}.task-detail td{padding-top:0;border-bottom:1px solid var(--line)}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.detail-box{background:#f8faff;border:1px solid #e2e9f4;border-radius:10px;padding:12px 14px;min-width:0}.detail-box h3{color:var(--navy);font-size:12px;margin:0 0 9px}.detail-box ul{font-size:13.5px}.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:800;white-space:nowrap}
+    .task-name{font-weight:800;color:var(--navy);letter-spacing:-.015em}.stacked{line-height:1.55}.stacked span{display:block}.stacked span+span{margin-top:3px}.task-main td{border-bottom:0;padding-bottom:9px}.task-detail td{padding-top:0;border-bottom:1px solid var(--line)}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.detail-box{background:#f8faff;border:1px solid #e2e9f4;border-radius:10px;padding:12px 14px;min-width:0}.detail-box h3{color:var(--navy);font-size:12px;margin:0 0 9px}.detail-box ul{font-size:13.5px}.reference-link{display:inline-block;margin-top:8px;color:var(--blue);font-weight:800;font-size:12px;text-decoration:none}.reference-link:hover{text-decoration:underline}.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:800;white-space:nowrap}
     .badge:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}.progress{color:var(--green);background:var(--green-soft)}.hold{color:var(--red);background:var(--red-soft)}.planned{color:var(--amber);background:var(--amber-soft)}
     ul{margin:0;padding-left:17px}li+li{margin-top:5px}.empty{display:none;text-align:center;color:var(--muted);padding:42px;background:#fff;border-radius:14px;border:1px solid var(--line)}
     .foot{color:var(--muted);font-size:12px;margin-top:14px;display:flex;justify-content:space-between;gap:12px}.cards{display:none}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 6px 20px rgba(23,54,93,.05)}
@@ -48,9 +48,9 @@
     <div class="metric"><div class="label">예정</div><div class="value" style="color:var(--amber)" id="plannedCount">1</div><div class="hint">일정 확정</div></div>
   </div>
   <main class="wrap">
-    <div class="callout"><div>●</div><div><b>W41 핵심:</b> 유통재고 상승 대응과 공급 제약 강화가 중심입니다. D.WOS 확정, AI 셀아웃 자동화 시작, 신규 모델 제약 편입이 차주 주요 일정입니다.</div></div>
+    <div class="callout" id="weekCallout"><div>●</div><div><b>W42 핵심:</b> HA·HVAC 부진재고 현황을 추가 점검하고, D.WOS 확정·AI 셀아웃 자동화·신규 모델 제약 편입을 추진합니다.</div></div>
     <div class="controls">
-      <select id="weekSelect" class="week-select" aria-label="조회 주차"><option value="W41">2026 W41 · 10월 8일</option></select>
+      <select id="weekSelect" class="week-select" aria-label="조회 주차"><option value="W42" selected>2026 W42 · 10월 12일</option><option value="W41">2026 W41 · 10월 8일</option></select>
       <div class="search"><input id="search" type="search" placeholder="업무명·진행사항·차주계획 검색" aria-label="업무 검색" /></div>
       <div class="filters" role="group" aria-label="상태 필터">
         <button class="filter active" data-status="전체">전체</button><button class="filter" data-status="진행중">진행중</button><button class="filter" data-status="보류/지연">보류·지연</button><button class="filter" data-status="예정">예정</button>
@@ -59,7 +59,7 @@
     </div>
     <div class="table-shell"><table><thead><tr><th class="col-name">업무명</th><th class="col-status">상태</th><th class="col-owner">담당자</th><th class="col-collab">협업부서</th><th class="col-start">Start</th><th class="col-complete">Complete</th><th class="col-reference">기타 참고사항</th></tr></thead><tbody id="taskRows"></tbody></table></div>
     <div class="cards" id="taskCards"></div><div class="empty" id="empty">조건에 맞는 업무가 없습니다.</div>
-    <div class="foot"><span>출처: 가전 경영혁신 그룹 주차별 To-Do List_W41_20261008.xlsx · Week 41</span><span>담당자는 원본에 명시된 경우만 표시 · 협업부서와 일정은 원본 기재 기준으로 정리</span></div>
+    <div class="foot"><span id="sourceLabel">출처: 가전 경영혁신 그룹 주차별 To-Do List_W42_20261012_0900.xlsx · Week 42</span><span>담당자는 원본에 명시된 경우만 표시 · 협업부서와 일정은 원본 기재 기준으로 정리</span></div>
   </main>
   <script>
   const weeklyData = { W41: [
@@ -79,10 +79,12 @@
     {n:14,name:'Flakt 업무 이관 검토(HVAC 전략 → GO)',status:'진행중',owner:'',now:['10/6 자사·일반소싱·Flakt 업무 비교 리뷰','제품 PLC, 수요, PO 운영, 물동 프로세스 분석','프로젝트성 모델의 코드 생성·단종 처리방식 확인'],next:['W42 관련부서 미팅 진행','리뷰 결과를 바탕으로 부서 간 역할과 책임 재분배 검토']},
     {n:15,name:'CFO DA 현안협의회',status:'예정',owner:'',now:['총재고·부진재고·유통재고 현황 준비','9월말·10월말·12월말 기준 자료 정리','빌트인 경영관리 기준 개선안 준비'],next:['10/12 15:00~16:00 협의회 진행','협의 결과 및 후속 조치사항 정리']}
   ] };
+  weeklyData.W42=weeklyData.W41.map(t=>({...t,now:[...t.now],next:[...t.next]}));
   const statusClass=s=>s==='진행중'?'progress':s==='예정'?'planned':'hold';
   const list=a=>`<ul>${a.map(x=>`<li>${x}</li>`).join('')}</ul>`;
   const stacked=value=>value?`<div class="stacked">${value.split(' · ').map(x=>`<span>${x}</span>`).join('')}</div>`:'';
-  const weekMeta={W41:{label:'2026년 41주차',date:'2026.10.08'}};
+  const reference=m=>`${m.note}${m.link?`<a class="reference-link" href="${m.link}" target="_blank" rel="noopener">${m.linkLabel}</a>`:''}`;
+  const weekMeta={W41:{label:'2026년 41주차',date:'2026.10.08',source:'가전 경영혁신 그룹 주차별 To-Do List_W41_20261008.xlsx',callout:'유통재고 상승 대응과 공급 제약 강화가 중심입니다. D.WOS 확정, AI 셀아웃 자동화 시작, 신규 모델 제약 편입이 차주 주요 일정입니다.'},W42:{label:'2026년 42주차',date:'2026.10.12',source:'가전 경영혁신 그룹 주차별 To-Do List_W42_20261012_0900.xlsx',callout:'HA·HVAC 부진재고 현황을 추가 점검하고, D.WOS 확정·AI 셀아웃 자동화·신규 모델 제약 편입을 추진합니다.'}};
   const taskMeta={
     1:{collab:'법인 · 영업전략 · 공조영업',start:'W41 이전',complete:'~연말',note:'D.WOS 10/15 확정 · T.WOS 11/3 확정'},
     2:{collab:'사업부 · 생산법인',start:'상시',complete:'상시',note:'W40 SOP 기준 소진 예상 34.5억원'},
@@ -100,11 +102,13 @@
     14:{collab:'HVAC 전략 · GO · 에솔팀',start:'W41',complete:'W42',note:'R/R 재분배 검토'},
     15:{collab:'CFO',start:'W41',complete:'10/12',note:'총재고·부진재고·유통재고 현안 협의'}
   };
-  let active='전체',selectedWeek='W41';
-  function render(){const tasks=weeklyData[selectedWeek]||[];const q=document.querySelector('#search').value.trim().toLowerCase();const filtered=tasks.filter(t=>{const m=taskMeta[t.n];return (active==='전체'||t.status===active)&&(!q||[t.name,t.owner,m.collab,m.start,m.complete,m.note,...t.now,...t.next].join(' ').toLowerCase().includes(q))});
-    document.querySelector('#totalCount').textContent=tasks.length;document.querySelector('#progressCount').textContent=tasks.filter(t=>t.status==='진행중').length;document.querySelector('#holdCount').textContent=tasks.filter(t=>t.status==='보류/지연').length;document.querySelector('#plannedCount').textContent=tasks.filter(t=>t.status==='예정').length;document.querySelector('#weekCountHint').textContent=`누적 ${Object.keys(weeklyData).length}개 주차`;const meta=weekMeta[selectedWeek];document.querySelector('#currentWeekLabel').textContent=`현재 조회: ${meta.label} · 원본 업무 순서 유지 · 최종 기준 ${meta.date}`;
-    document.querySelector('#taskRows').innerHTML=filtered.map(t=>{const m=taskMeta[t.n];return `<tr class="task-main"><td><div class="task-name">${t.n}. ${t.name}</div></td><td><span class="badge ${statusClass(t.status)}">${t.status}</span></td><td>${stacked(t.owner)}</td><td>${stacked(m.collab)}</td><td>${m.start}</td><td>${m.complete}</td><td>${m.note}</td></tr><tr class="task-detail"><td colspan="7"><div class="detail-grid"><section class="detail-box"><h3>당주 진행사항</h3>${list(t.now)}</section><section class="detail-box"><h3>향후 계획</h3>${list(t.next)}</section></div></td></tr>`}).join('');
-    document.querySelector('#taskCards').innerHTML=filtered.map(t=>{const m=taskMeta[t.n];return `<article class="card"><div class="card-head"><h2>${t.n}. ${t.name}</h2><span class="badge ${statusClass(t.status)}">${t.status}</span></div><div class="meta">${t.owner?`담당자${stacked(t.owner)}`:'담당자'}${m.collab?`　협업부서${stacked(m.collab)}`:''}　Start · ${m.start}　Complete · ${m.complete}</div><div class="section"><h3>당주 진행사항</h3>${list(t.now)}</div><div class="section"><h3>향후 계획</h3>${list(t.next)}</div><div class="section"><h3>기타 참고사항</h3>${m.note}</div></article>`}).join('');
+  const w42TaskMeta={...taskMeta,1:{...taskMeta[1],note:'HA 부진율 5.1%(비축 제외 5.0%), HVAC 18.5%(17.3%) · 인도 냉장고 WOS 11월말 adj 기준 +6.9주 점검 · HA/HVAC 부진재고 표 수치 반영'},3:{...taskMeta[3],note:'SIEL AX 협의: 지점·하위 유통 단위 AI 예측 요청 및 현지 담당자 컨콜 추진'},7:{...taskMeta[7],note:'SSV Short 개발 완료 후 W43 Plan 적용 예정 · 10월말까지 버퍼 축소 GO 협의'},10:{...taskMeta[10],note:'SIEL Shuffle 기능 W42/43 배포 검증 · SOP~DP Gap 분석용 Consensus Measure 개발'}};
+  const weeklyTaskMeta={W41:taskMeta,W42:w42TaskMeta};
+  let active='전체',selectedWeek='W42';
+  function render(){const tasks=weeklyData[selectedWeek]||[];const metas=weeklyTaskMeta[selectedWeek];const q=document.querySelector('#search').value.trim().toLowerCase();const filtered=tasks.filter(t=>{const m=metas[t.n];return (active==='전체'||t.status===active)&&(!q||[t.name,t.owner,m.collab,m.start,m.complete,m.note,...t.now,...t.next].join(' ').toLowerCase().includes(q))});
+    document.querySelector('#totalCount').textContent=tasks.length;document.querySelector('#progressCount').textContent=tasks.filter(t=>t.status==='진행중').length;document.querySelector('#holdCount').textContent=tasks.filter(t=>t.status==='보류/지연').length;document.querySelector('#plannedCount').textContent=tasks.filter(t=>t.status==='예정').length;document.querySelector('#weekCountHint').textContent=`누적 ${Object.keys(weeklyData).length}개 주차`;const meta=weekMeta[selectedWeek];document.querySelector('#currentWeekLabel').textContent=`현재 조회: ${meta.label} · 원본 업무 순서 유지 · 최종 기준 ${meta.date}`;document.querySelector('#sourceLabel').textContent=`출처: ${meta.source} · ${selectedWeek}`;document.querySelector('#weekCallout').innerHTML=`<div>●</div><div><b>${selectedWeek} 핵심:</b> ${meta.callout}</div>`;
+    document.querySelector('#taskRows').innerHTML=filtered.map(t=>{const m=metas[t.n];return `<tr class="task-main"><td><div class="task-name">${t.n}. ${t.name}</div></td><td><span class="badge ${statusClass(t.status)}">${t.status}</span></td><td>${stacked(t.owner)}</td><td>${stacked(m.collab)}</td><td>${m.start}</td><td>${m.complete}</td><td>${reference(m)}</td></tr><tr class="task-detail"><td colspan="7"><div class="detail-grid"><section class="detail-box"><h3>당주 진행사항</h3>${list(t.now)}</section><section class="detail-box"><h3>향후 계획</h3>${list(t.next)}</section></div></td></tr>`}).join('');
+    document.querySelector('#taskCards').innerHTML=filtered.map(t=>{const m=metas[t.n];return `<article class="card"><div class="card-head"><h2>${t.n}. ${t.name}</h2><span class="badge ${statusClass(t.status)}">${t.status}</span></div><div class="meta">${t.owner?`담당자${stacked(t.owner)}`:'담당자'}${m.collab?`　협업부서${stacked(m.collab)}`:''}　Start · ${m.start}　Complete · ${m.complete}</div><div class="section"><h3>당주 진행사항</h3>${list(t.now)}</div><div class="section"><h3>향후 계획</h3>${list(t.next)}</div><div class="section"><h3>기타 참고사항</h3>${reference(m)}</div></article>`}).join('');
     document.querySelector('#empty').style.display=filtered.length?'none':'block';
   }
   document.querySelector('#weekSelect').addEventListener('change',e=>{selectedWeek=e.target.value;document.querySelector('#search').value='';render()});document.querySelector('#search').addEventListener('input',render);document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');active=b.dataset.status;render()}));render();
