@@ -40,17 +40,17 @@
   </style>
 </head>
 <body>
-  <header class="top"><div class="wrap"><h1>DA 경영혁신그룹 To-do List</h1><p class="sub" id="currentWeekLabel">현재 조회: 2026년 41주차 · 원본 업무 순서 유지 · 최종 기준 2026.10.08</p></div></header>
+  <header class="top"><div class="wrap"><h1>DA 경영혁신그룹 To-do List</h1><p class="sub" id="currentWeekLabel">현재 조회: 2026년 42주차 · 원본 업무 순서 유지 · 최종 기준 2026.10.16</p></div></header>
   <div class="wrap summary" aria-label="업무 현황 요약">
-      <div class="metric"><div class="label">선택 주차 업무</div><div class="value" id="totalCount">15</div><div class="hint" id="weekCountHint">누적 1개 주차</div></div>
-    <div class="metric"><div class="label">진행중</div><div class="value" style="color:var(--green)" id="progressCount">13</div><div class="hint">계획에 따라 추진 중</div></div>
+      <div class="metric"><div class="label">선택 주차 업무</div><div class="value" id="totalCount">15</div><div class="hint" id="weekCountHint">누적 2개 주차</div></div>
+    <div class="metric"><div class="label">진행중</div><div class="value" style="color:var(--green)" id="progressCount">14</div><div class="hint">계획에 따라 추진 중</div></div>
     <div class="metric"><div class="label">보류·지연</div><div class="value" style="color:var(--red)" id="holdCount">1</div><div class="hint">재협의 필요</div></div>
-    <div class="metric"><div class="label">예정</div><div class="value" style="color:var(--amber)" id="plannedCount">1</div><div class="hint">일정 확정</div></div>
+    <div class="metric"><div class="label">예정</div><div class="value" style="color:var(--amber)" id="plannedCount">0</div><div class="hint">일정 확정</div></div>
   </div>
   <main class="wrap">
-    <div class="callout" id="weekCallout"><div>●</div><div><b>W42 핵심:</b> HA·HVAC 부진재고 현황을 추가 점검하고, D.WOS 확정·AI 셀아웃 자동화·신규 모델 제약 편입을 추진합니다.</div></div>
+    <div class="callout" id="weekCallout"><div>●</div><div><b>W42 핵심:</b> 판매법인 부진재고(W41 BI 907억·10월말 예상 680억) 및 동·서남아 유통재고를 집중 점검하고, ’27년 D.WOS 확정·W43 AI 셀아웃 1단계 자동화·SSV Short 적용을 추진합니다.</div></div>
     <div class="controls">
-      <select id="weekSelect" class="week-select" aria-label="조회 주차"><option value="W42" selected>2026 W42 · 10월 12일</option><option value="W41">2026 W41 · 10월 8일</option></select>
+      <select id="weekSelect" class="week-select" aria-label="조회 주차"><option value="W42" selected>2026 W42 · 10월 16일</option><option value="W41">2026 W41 · 10월 8일</option></select>
       <div class="search"><input id="search" type="search" placeholder="업무명·진행사항·차주계획 검색" aria-label="업무 검색" /></div>
       <div class="filters" role="group" aria-label="상태 필터">
         <button class="filter active" data-status="전체">전체</button><button class="filter" data-status="진행중">진행중</button><button class="filter" data-status="보류/지연">보류·지연</button><button class="filter" data-status="예정">예정</button>
@@ -59,32 +59,53 @@
     </div>
     <div class="table-shell"><table><thead><tr><th class="col-name">업무명</th><th class="col-status">상태</th><th class="col-owner">담당자</th><th class="col-collab">협업부서</th><th class="col-start">Start</th><th class="col-complete">Complete</th><th class="col-reference">기타 참고사항</th></tr></thead><tbody id="taskRows"></tbody></table></div>
     <div class="cards" id="taskCards"></div><div class="empty" id="empty">조건에 맞는 업무가 없습니다.</div>
-    <div class="foot"><span id="sourceLabel">출처: 가전 경영혁신 그룹 주차별 To-Do List_W42_20261012_0900.xlsx · Week 42</span><span>담당자는 원본에 명시된 경우만 표시 · 협업부서와 일정은 원본 기재 기준으로 정리</span></div>
+    <div class="foot"><span id="sourceLabel">출처: 가전 경영혁신 그룹 주차별 To-Do List_W42_20261016_1600.xlsx · Week 42</span><span>담당자는 원본에 명시된 경우만 표시 · 협업부서와 일정은 원본 기재 기준으로 정리</span></div>
   </main>
   <script>
-  const weeklyData = { W41: [
-    {n:1,name:'총, 부진, 유통재고 대책 및 목표 수립(~연말)',status:'진행중',owner:'',now:['2년 초과 SET 재고 약 3.2천대·17억원 확인','2년 초과 옵션물 비중 12.2%, 약 92억원','냉장고 WOS 적정비 W40 103% → W41 112%','동남아 134%, 서남아 126%로 유통재고 악화','’27년 D.WOS 산출 결과 및 마스터 오류 분석'],next:['D.WOS 검토·보정 마감: ~10/14','D.WOS 최종 확정: 10/15','T.WOS 입력·조정 검토: 10/16~11/2','동남아·서남아 냉장고 재고 대책 집중 점검']},
-    {n:2,name:'ARGUS 활용, 원자재 및 제상품 부진재고 관리',status:'진행중',owner:'',now:['W40 추가 생산모델 제안 및 Tracking 결과 10/6 점검·공지','SOP 기준 부진재고 소진 예상액 약 34.5억원','제안모델 약 70%가 기존 모델과 중복','제상품 관련 오류·개선 VOC 19건 등록 진행 중'],next:['W42부터 제안모델 확대 검토','상위 150개 모델 선정','RAC 짝맞춤, 공급 BOD 정보 등 개선 VOC 후속 조치','사업부·생산법인 ARGUS 활용률 지속 점검']},
-    {n:3,name:'경영혁신그룹 AX 추진',status:'진행중',owner:'조아현P · 양재영P',now:['사업부 등록 과제 5건 및 부서 자체 과제 5건 관리','Wifi 분석 Dashboard 진행','실행계획 수립 자동화 관련 DA·PI 업무 분석 완료','결재 유형분류 1차 자동화 적용 완료','Task Dashboard 및 To-do List 관리방안 정리'],next:['Dashboard 실시간 업데이트 및 주간 히스토리 관리','To-do List 월요일 아침 예약발송 운영','RPA·Windows Task Scheduler 등을 통한 자동 메일 발송 검토','Gauss Agent 챗봇과 Task Dashboard 연계 추진']},
-    {n:4,name:'부진재고 관리 기준 완화에 따른 재고 단가대비 할인율 관리',status:'진행중',owner:'',now:['SAC와 빌트인 할인율 현황 점검','SAC 글로벌 181일 이상 재고 할인율 2.4%, 유럽 3.0%','빌트인 실판매 수량 기준: 글로벌 10.0%, 한국 8.6%, 북미 11.0%, 유럽 7.1%','유럽 EHS 구모델 할인판매 대책 지속 관리'],next:['W42에 10월 실적 입수 예정','유럽 과다 할인 및 한국·북미 할인율 증가 사유·대책 재입수','국가별 프로모션, 짝맞춤 판매 및 스크랩 대상 검토']},
-    {n:5,name:'공급 제약 보완',status:'진행중',owner:'',now:['이상수요 SKU 강제 제약 W41 2차 적용 완료','예외 반영 후 제약량 12K대 발생','SIG 등급 기준 변경 결과 27만대 → 41만대(+14만대)','SOI 추가 판매 제안 약 14K대 검토'],next:['RTS 12주 도래 신모델을 마스터에 반영해 W42부터 제약 편입','제약 증가가 큰 모델·법인을 RPM에 사전 공유','SOI·BAI 추가 로직 검토 및 판매기회 제안 지속']},
-    {n:6,name:'Wifi 연결 정보 GSCM內 적재 데이터 및 UI 활용 제고',status:'진행중',owner:'',now:['다국가 AP2를 하위 국가까지 분류·표시하는 기능 적용 완료','10월 GO 회의용 분석 Dashboard 수정안 보고','Sell-out 미입수 거래선의 Wifi Activation 정보 대체 활용방안 구현'],next:['W42까지 영업전략그룹·판매법인 활용 현황 리뷰','S/In Scan 대상 거래선의 유통재고 L/Time 제외 여부 확인','Activation L/Time을 활용한 거래선별 적정 WOS 검증']},
-    {n:7,name:'북미 버퍼 관리 체계 정립',status:'진행중',owner:'',now:['THD 등 필수 안전재고와 일반 버퍼성 안전재고 구분 검토','판매 Short 예외 적용 기준을 사이트가 아닌 ITEM 단위로 검토','SSV Short 구조 및 로직 개발방안 수립'],next:['W43 C Plan 적용을 위한 구조·로직 개발 및 테스트 준비','북미 Others·온라인 버퍼 중 THD 관련 버퍼 제거 준비','주차별 안전재고 설정 로직과 효과 검증 일정 구체화']},
-    {n:8,name:'실행 수립 프로세스 개선(자동화/효율화)',status:'진행중',owner:'',now:['실행 자동화 시뮬레이션과 Report 양식을 Skill로 전환','매뉴얼을 포함해 10/6 SEA에 제공 완료','SEA 실행 업무의 FTE 내 Category 반영방안 협의'],next:['SEA 실행 부문 적용 후 활용 결과 점검','전사 AX팀을 통한 API·MCP 파이프라인 연계 추진','SCM AX DB 대상 데이터 적재 및 활용방안 협의']},
-    {n:9,name:'평탄화 관련, DP 적정성 로직 수립',status:'진행중',owner:'',now:['10/7 HVAC RAC 수요예측 시뮬레이션 리뷰','2Y 기반 모델과 Optimal 모델을 결합한 Hybrid 모델 도입','최근 성장률 이상치와 모델 간 괴리율을 활용한 후보정 로직 검토'],next:['법인별 Sell-out 입수 여부·기후 민감도 등 변수 조정','HVAC 수요예측모델과 병합 시 법인별 개별 변수 반영','법인별 백테스트 결과 추가 검증']},
-    {n:10,name:'NSCM DP, 네팅, AI 셀아웃 적용',status:'진행중',owner:'',now:['NSCM DP·Plan 지역별 적용 완료','AI와 User 예측 결과를 S/O FA·AR 기준으로 A/B/C 등급화','A/B 등급을 자동화 대상으로 선정','단계별 AI 셀아웃 적용계획 구체화'],next:['W42부터 W+2~W+52 자동 Copy 및 조정 허용','지역 총괄·법인 대상 공문 발송','10월 중 권역별 테넌트 통합 추진','W49 일부 구간 수정 제한 적용 준비']},
-    {n:11,name:'온라인 Price 크롤링, HA, HVAC 서비스 확대 검토',status:'진행중',owner:'',now:['HA 전법인 확대 실행 품의 완료 및 계약 법무 검토 진행','신규 22개 법인·55개 사이트 개발계획 작성·검증','선행 개발 착수','조리기기 6개 법인·25개 사이트 및 RAC 5개 법인·16개 사이트 일정 조정','G마켓 수집 가능 여부 기술 확인'],next:['G마켓 공식 판매자 외 수집 대상 제외 기술 검토','가격 이탈률 ±30%·20%·10% 테스트 진행','11개 개발 그룹별 마스터 등록·테스트·수집 점검','W43부터 개발 완료 사이트 순차 오픈']},
-    {n:12,name:'SAC, BO ~ AP1 연계 통한 예측 적확도 개선(Sales Force.com 활용 개선)',status:'보류/지연',owner:'',now:['에솔팀 내부 이슈로 W41까지 과제 보류','SFDC Rollout Plan과 GSCM AP1 연계 필요사항 유지'],next:['W42 에솔팀·혁신 간 과제 착수 재검토','SFDC 기반 PSI 입력관리 및 BO→AP1 자동 Copy 추진방안 재협의']},
-    {n:13,name:'SEDA KD PSI 개선협의',status:'진행중',owner:'',now:['SEDA KD 현 운영 프로세스 확인 완료','W41부터 ROH 시스템·실물 일치 여부 점검','BOM 연계 KD/ROH 레벨 재고 시뮬레이션 진행'],next:['W42까지 수기 PSI와 KD 시뮬레이션 정합성 검증·보완','W43 재고 관리방안 확정 후 SCM 개발 협의']},
-    {n:14,name:'Flakt 업무 이관 검토(HVAC 전략 → GO)',status:'진행중',owner:'',now:['10/6 자사·일반소싱·Flakt 업무 비교 리뷰','제품 PLC, 수요, PO 운영, 물동 프로세스 분석','프로젝트성 모델의 코드 생성·단종 처리방식 확인'],next:['W42 관련부서 미팅 진행','리뷰 결과를 바탕으로 부서 간 역할과 책임 재분배 검토']},
-    {n:15,name:'CFO DA 현안협의회',status:'예정',owner:'',now:['총재고·부진재고·유통재고 현황 준비','9월말·10월말·12월말 기준 자료 정리','빌트인 경영관리 기준 개선안 준비'],next:['10/12 15:00~16:00 협의회 진행','협의 결과 및 후속 조치사항 정리']}
-  ] };
-  weeklyData.W42=weeklyData.W41.map(t=>({...t,now:[...t.now],next:[...t.next]}));
+  const weeklyData = {
+    W41: [
+      {n:1,name:'총, 부진, 유통재고 대책 및 목표 수립(~연말)',status:'진행중',owner:'',now:['2년 초과 SET 재고 약 3.2천대·17억원 확인','2년 초과 옵션물 비중 12.2%, 약 92억원','냉장고 WOS 적정비 W40 103% → W41 112%','동남아 134%, 서남아 126%로 유통재고 악화','’27년 D.WOS 산출 결과 및 마스터 오류 분석'],next:['D.WOS 검토·보정 마감: ~10/14','D.WOS 최종 확정: 10/15','T.WOS 입력·조정 검토: 10/16~11/2','동남아·서남아 냉장고 재고 대책 집중 점검']},
+      {n:2,name:'ARGUS 활용, 원자재 및 제상품 부진재고 관리',status:'진행중',owner:'',now:['W40 추가 생산모델 제안 및 Tracking 결과 10/6 점검·공지','SOP 기준 부진재고 소진 예상액 약 34.5억원','제안모델 약 70%가 기존 모델과 중복','제상품 관련 오류·개선 VOC 19건 등록 진행 중'],next:['W42부터 제안모델 확대 검토','상위 150개 모델 선정','RAC 짝맞춤, 공급 BOD 정보 등 개선 VOC 후속 조치','사업부·생산법인 ARGUS 활용률 지속 점검']},
+      {n:3,name:'경영혁신그룹 AX 추진',status:'진행중',owner:'조아현P · 양재영P',now:['사업부 등록 과제 5건 및 부서 자체 과제 5건 관리','Wifi 분석 Dashboard 진행','실행계획 수립 자동화 관련 DA·PI 업무 분석 완료','결재 유형분류 1차 자동화 적용 완료','Task Dashboard 및 To-do List 관리방안 정리'],next:['Dashboard 실시간 업데이트 및 주간 히스토리 관리','To-do List 월요일 아침 예약발송 운영','RPA·Windows Task Scheduler 등을 통한 자동 메일 발송 검토','Gauss Agent 챗봇과 Task Dashboard 연계 추진']},
+      {n:4,name:'부진재고 관리 기준 완화에 따른 재고 단가대비 할인율 관리',status:'진행중',owner:'',now:['SAC와 빌트인 할인율 현황 점검','SAC 글로벌 181일 이상 재고 할인율 2.4%, 유럽 3.0%','빌트인 실판매 수량 기준: 글로벌 10.0%, 한국 8.6%, 북미 11.0%, 유럽 7.1%','유럽 EHS 구모델 할인판매 대책 지속 관리'],next:['W42에 10월 실적 입수 예정','유럽 과다 할인 및 한국·북미 할인율 증가 사유·대책 재입수','국가별 프로모션, 짝맞춤 판매 및 스크랩 대상 검토']},
+      {n:5,name:'공급 제약 보완',status:'진행중',owner:'',now:['이상수요 SKU 강제 제약 W41 2차 적용 완료','예외 반영 후 제약량 12K대 발생','SIG 등급 기준 변경 결과 27만대 → 41만대(+14만대)','SOI 추가 판매 제안 약 14K대 검토'],next:['RTS 12주 도래 신모델을 마스터에 반영해 W42부터 제약 편입','제약 증가가 큰 모델·법인을 RPM에 사전 공유','SOI·BAI 추가 로직 검토 및 판매기회 제안 지속']},
+      {n:6,name:'Wifi 연결 정보 GSCM內 적재 데이터 및 UI 활용 제고',status:'진행중',owner:'',now:['다국가 AP2를 하위 국가까지 분류·표시하는 기능 적용 완료','10월 GO 회의용 분석 Dashboard 수정안 보고','Sell-out 미입수 거래선의 Wifi Activation 정보 대체 활용방안 구현'],next:['W42까지 영업전략그룹·판매법인 활용 현황 리뷰','S/In Scan 대상 거래선의 유통재고 L/Time 제외 여부 확인','Activation L/Time을 활용한 거래선별 적정 WOS 검증']},
+      {n:7,name:'북미 버퍼 관리 체계 정립',status:'진행중',owner:'',now:['THD 등 필수 안전재고와 일반 버퍼성 안전재고 구분 검토','판매 Short 예외 적용 기준을 사이트가 아닌 ITEM 단위로 검토','SSV Short 구조 및 로직 개발방안 수립'],next:['W43 C Plan 적용을 위한 구조·로직 개발 및 테스트 준비','북미 Others·온라인 버퍼 중 THD 관련 버퍼 제거 준비','주차별 안전재고 설정 로직과 효과 검증 일정 구체화']},
+      {n:8,name:'실행 수립 프로세스 개선(자동화/효율화)',status:'진행중',owner:'',now:['실행 자동화 시뮬레이션과 Report 양식을 Skill로 전환','매뉴얼을 포함해 10/6 SEA에 제공 완료','SEA 실행 업무의 FTE 내 Category 반영방안 협의'],next:['SEA 실행 부문 적용 후 활용 결과 점검','전사 AX팀을 통한 API·MCP 파이프라인 연계 추진','SCM AX DB 대상 데이터 적재 및 활용방안 협의']},
+      {n:9,name:'평탄화 관련, DP 적정성 로직 수립',status:'진행중',owner:'',now:['10/7 HVAC RAC 수요예측 시뮬레이션 리뷰','2Y 기반 모델과 Optimal 모델을 결합한 Hybrid 모델 도입','최근 성장률 이상치와 모델 간 괴리율을 활용한 후보정 로직 검토'],next:['법인별 Sell-out 입수 여부·기후 민감도 등 변수 조정','HVAC 수요예측모델과 병합 시 법인별 개별 변수 반영','법인별 백테스트 결과 추가 검증']},
+      {n:10,name:'NSCM DP, 네팅, AI 셀아웃 적용',status:'진행중',owner:'',now:['NSCM DP·Plan 지역별 적용 완료','AI와 User 예측 결과를 S/O FA·AR 기준으로 A/B/C 등급화','A/B 등급을 자동화 대상으로 선정','단계별 AI 셀아웃 적용계획 구체화'],next:['W42부터 W+2~W+52 자동 Copy 및 조정 허용','지역 총괄·법인 대상 공문 발송','10월 중 권역별 테넌트 통합 추진','W49 일부 구간 수정 제한 적용 준비']},
+      {n:11,name:'온라인 Price 크롤링, HA, HVAC 서비스 확대 검토',status:'진행중',owner:'',now:['HA 전법인 확대 실행 품의 완료 및 계약 법무 검토 진행','신규 22개 법인·55개 사이트 개발계획 작성·검증','선행 개발 착수','조리기기 6개 법인·25개 사이트 및 RAC 5개 법인·16개 사이트 일정 조정','G마켓 수집 가능 여부 기술 확인'],next:['G마켓 공식 판매자 외 수집 대상 제외 기술 검토','가격 이탈률 ±30%·20%·10% 테스트 진행','11개 개발 그룹별 마스터 등록·테스트·수집 점검','W43부터 개발 완료 사이트 순차 오픈']},
+      {n:12,name:'SAC, BO ~ AP1 연계 통한 예측 적확도 개선(Sales Force.com 활용 개선)',status:'보류/지연',owner:'',now:['에솔팀 내부 이슈로 W41까지 과제 보류','SFDC Rollout Plan과 GSCM AP1 연계 필요사항 유지'],next:['W42 에솔팀·혁신 간 과제 착수 재검토','SFDC 기반 PSI 입력관리 및 BO→AP1 자동 Copy 추진방안 재협의']},
+      {n:13,name:'SEDA KD PSI 개선협의',status:'진행중',owner:'',now:['SEDA KD 현 운영 프로세스 확인 완료','W41부터 ROH 시스템·실물 일치 여부 점검','BOM 연계 KD/ROH 레벨 재고 시뮬레이션 진행'],next:['W42까지 수기 PSI와 KD 시뮬레이션 정합성 검증·보완','W43 재고 관리방안 확정 후 SCM 개발 협의']},
+      {n:14,name:'Flakt 업무 이관 검토(HVAC 전략 → GO)',status:'진행중',owner:'',now:['10/6 자사·일반소싱·Flakt 업무 비교 리뷰','제품 PLC, 수요, PO 운영, 물동 프로세스 분석','프로젝트성 모델의 코드 생성·단종 처리방식 확인'],next:['W42 관련부서 미팅 진행','리뷰 결과를 바탕으로 부서 간 역할과 책임 재분배 검토']},
+      {n:15,name:'CFO DA 현안협의회',status:'예정',owner:'',now:['총재고·부진재고·유통재고 현황 준비','9월말·10월말·12월말 기준 자료 정리','빌트인 경영관리 기준 개선안 준비'],next:['10/12 15:00~16:00 협의회 진행','협의 결과 및 후속 조치사항 정리']}
+    ],
+    W42: [
+      {n:1,name:'총, 부진, 유통재고 대책 및 목표 수립(~연말)',status:'진행중',owner:'우재헌P · 박문희P · 노재현P',now:['W41 판매법인 부진재고(BI) 907억원(8.6%, 전주비 △125억) 및 10월말 SCM 예상 680억원(8.6%) 점검','2년 초과 SET 재고 약 3.2천대(17억원) 및 옵션물 비중 11.8%(약 91억원, 배터리 4,935대/3.7억) 확인','’27년 Global D.WOS 산출 결과(냉장고 7.2주, 세탁기 7.4주) 검토·보정 마감(~10/14) 및 한국(Sellable 전환)·북미 감소 영향 분석','10월말 기준 냉장고(8.3주, 적정비 106%)·세탁기(7.1주, 96%) 유통재고 점검 결과 동남아·서남아 양 제품 모두 악화 확인'],next:['전사 최종 D.WOS 확정 공지 후 T.WOS 입력·조정 검토(10/16~11/2) 및 확정(11/3)','’27년 법인별 Event 캘린더 입수 및 시즈널리티 반영 최적 T.WOS 세팅 후 CK 리뷰 추진','에어컨/기타제품 데이터 작업 후 D.WOS 산출 순차 진행 및 동남아·서남아 유통재고 집중 점검','인도 냉장고 소량 잔존 재고 클렌징 및 EOP/EOS 경과 모델 유통재고 모수 제외 로직 시스템 반영 확인']},
+      {n:2,name:'ARGUS 활용, 원자재 및 제상품 부진재고 관리',status:'진행중',owner:'주경일P',now:['W40 추가 생산 제안 모델 기준 DP 반영 여부 및 물량 감소 모델 사유 점검','W42부터 추가 생산 제안 모델 확대 선정(기존 약 70% 중복 해소 위해 상위 150개 모델 선정)','제상품 기본 기능 오류 및 사업부 특성(HVAC·빌트인) 미반영 등 개선 VOC 19건 등록 진행','원자재 전략 비축자재 구분 및 주간현황 메일링 개선 완료, 물동외 관리재고 별도 UI 구성 진행 중'],next:['장기 소진필요 자재(58억원) 대상 추가 생산모델 제안 검토 및 별도 Simulation 결과 공유(구매·영업)','불용자재(41억원 폐기) 발생 사유 중 SOP 변동 관련 Raw 데이터 분석(구매 협업)','RAC 실내/외기 짝맞춤, 공급 BOD 정보 추가, 제안모델 SOP 제약 예외 등 잔여 VOC 후속 조치','HA 제상품 기능 보완 후 Biz Wrapup 시연 및 사업부·생산법인 ARGUS 활용률 지속 점검']},
+      {n:3,name:'경영혁신그룹 AX 추진',status:'진행중',owner:'주경일P · 조아현P · 양재영P',now:['사업부 등록 과제 5건(AX팀 주관 과제별 타당성 검토 진행, W42) 및 부서 자체 과제 5건 담당자 지정 관리','SIEL AX 과제(AI 셀아웃) 협의(10/8, 서남아 RPM·AX팀·혁신) 및 Weekly Biz Rhythm·지점 하위 유통 예측 요청 검토','그룹 주간 Task 대시보드 실시간 업데이트 운영 및 주간업무·유통/회사재고·KPI UI 구성','To-do List 월요일 아침 예약발송 운영 및 RPA·외부 AI 기반 자동 메일 발송·내용 요약 자동화 추가 검토'],next:['(RPM) 기존 AI SO Guide 미사용 사유 및 유통 데이터 입수 방식·양식·지점 하위 레벨 분기 여부 확인','(RPM·혁신) 차주 중 SIEL 현지 담당자 컨콜 진행(윤필P·김동호P 포함) 및 GSCM 내 AI 데이터 활용법 교육 준비','Gauss Portal 내 Chat API 활용 챗봇 제작 및 Task 대시보드 연계 지속 추진','각 담당자별 10대 AX 추진 과제 개발 및 실무 적용 고도화']},
+      {n:4,name:'부진재고 관리 기준 완화에 따른 재고 단가대비 할인율 관리',status:'진행중',owner:'서윤P',now:['8월말 181일↑ 부진재고 대상 9월말 판매실적 반영 SAC·빌트인 할인율 현황 업데이트','SAC 할인율(② 미래 남은 재고 실적단가 반영): 글로벌 4.6%, 유럽 5.5% (③ 실판매 수량 기준 글로벌 3.9%, 유럽 3.2%)','유럽 EHS 구모델(60개 중 14개) 181일↑ 할인율 8월 13.3% 확인(제외 시 글로벌 3.0%, 유럽 1.5%)','빌트인 반품 제외 할인율(8월말 재고): ① 실적+계획 글로벌 1.8%, ② 실적단가 4.7%, ③ 실판매 수량 2.6%(한국 4.5%, 북미 1.3%, 유럽 4.9%)'],next:['W42 중 10월 판매실적 입수 및 할인율 영향도 추가 분석','유럽 과다 할인 지속 발생 및 한국·북미 법인 4월 이후 할인율 증가 사유·대책 재입수(~W43)','구 냉매(R410A) 실외기 단종 복원 짝맞춤 판매, 전략 거래선 프로모션, 연내 소진 불가분 스크랩 지속 검토']},
+      {n:5,name:'공급 제약 보완',status:'진행중',owner:'',now:['이상수요 SKU 강제 제약 W41 2차 적용 완료(예외 반영 후 12K대 제약) 및 SOI 추가 판매 기회 14K대 제안','SIG 등급제 기준 변경(전월말 실적 WOS 적용)에 따라 제약량 27만대(W40) → 41만대(W41, +14만대) 증가 확인','신모델 RTS 12주(3개월) 도래 모델 중 SIG 제약 미반영분 전수 확인 및 마스터 반영, W42부터 제약 편입','전사혁신 주관 4가지 비교 지표(STDP, SO_Adj, SO_Org, LTDP) 기반 판매 연계 적정수요 제약 대체 로직 검토 중(거래선 단위 SIG 제약 일시 보류)'],next:['모델별 WOS 점검 후 제약량 증가가 큰 법인·모델 위주 RPM 사전 공유 및 대응 가이드','SOI(추가 판매기회) 및 BAI(판매차질 Risk) 등 사업부 요청사항 반영한 전사혁신 적정수요 추가 로직 검토','2종 T.WOS(평가용 및 등급제 반영용) 발췌를 위한 마스터 작업 및 영향도 테스트 검증']},
+      {n:6,name:'Wifi 연결 정보 GSCM內 적재 데이터 및 UI 활용 제고',status:'진행중',owner:'주경일P',now:['영업전략그룹 및 판매법인 대상 Wifi UI 활용 현황 점검·리뷰 진행(~W42)','Activation Analysis 추가 VOC 보완(Product Grp 정렬 이슈, 상/하위 항목 선택 시 상위 합계 데이터 구성, 연결률 일괄 반영 등)','10월 GO 회의 안건용 분석 Data Dashboard 구현 및 HA 영업전략 의견 수렴 진행 중','Sell-out 미입수 거래선 대상 Wifi Activation 정보 대체 활용 Measure(Ch. Inv. Performance 등 3개 UI) 운영'],next:['HA 영업전략 의견 반영하여 10월 GO 회의용 분석 Data Dashboard 최종 보완 및 보고','S/In Scan 대상 거래선 평균 유통재고 L/Time 제외 분석 추가 확인','S/In Scan ~ Activation L/Time 분석을 통한 거래선별 적정 WOS 검증']},
+      {n:7,name:'북미 버퍼 관리 체계 정립',status:'진행중',owner:'우재헌P · 신지우P',now:['북미 GO와 SSV Short 관련 회의 진행(10/8) 및 PSI·SOP 시뮬레이션 개발 완료(계산·확정주차 로직 이상 무 확인)','필수 안전재고(THD 등) 대상 판매 Short(Aging 등) 예외 반영 기준을 사이트가 아닌 ITEM 레벨 필수재고로 한정 검토','W42부터 S&OP에서 북미 법인과 버퍼 축소 협의 착수 및 W43 Plan 적용 후 10월말까지 버퍼 점진적 제거 합의'],next:['W43 C Plan 및 정규 Plan에 THD 안전재고 Short(SSV_Short) 적용 및 북미 Others·온라인 내 THD 버퍼 제거(~10월말)','PO Process 및 SOP/Weekly SOP UI 추가 개발을 위한 IT 일정 협의','북미 Aging 발생 타 요인 파악 및 버퍼 로직 개선 후 재고·버퍼 변동 추이 모니터링']},
+      {n:8,name:'실행 수립 프로세스 개선(자동화/효율화)',status:'진행중',owner:'최연정P',now:['실행 자동화 시뮬레이션 및 Report 양식을 Skill로 전환하여 매뉴얼과 함께 SEA 법인 제공 완료(10/6)','SEA 법인 활용방안 문의 대응을 위해 추가 프롬프트 작성 및 공유 완료(10/14)','SEA 법인 내 자체 개발 중인 Agent 내용 공유·전파 요청(대상: 이승희P)','전사 SCM 그룹과 SEA(DA) FTE 내 실행 부문 Category화 반영 및 SCM AX DB(34개 테이블) 데이터 적재 협의'],next:['SEA 법인 Skill 활용 결과 점검 및 법인 실행 전략·현황 분석 Tool로의 확장 검토','전사 AX팀 협업을 통한 SEA API(MCP 프로토콜) 파이프라인 연계 지속 추진']},
+      {n:9,name:'평탄화 관련, DP 적정성 로직 수립',status:'진행중',owner:'',now:['10개년(’17~’26) Sell-in 실적 기반 RAC ’27년 1분기 월별 DP 예측 로직(Optimal Model 및 Recent 2Y) 수립','에솔팀 지역별 영업 대상 HVAC RAC 수요예측 시뮬레이션 리뷰(10/7) 및 Hybrid 모델(이상치·괴리율 후보정) 도입','법인별 Sell-out 입수 여부 및 기후 민감도 등 개별 특성을 반영한 입력 변수 커스터마이징 방향 정립'],next:['HVAC 수요예측모델과의 병합 프로세스 진행 시 법인별 개별 변수 최종 반영','법인별 예측 모델 백테스트 및 ’27년 1분기 입력 DP 적정성 지속 점검']},
+      {n:10,name:'NSCM DP, 네팅, AI 셀아웃 적용',status:'진행중',owner:'박문희P',now:['전 권역 NSCM DP·Plan 오픈 완료 및 전사 AI 예측 자동화 추진 기준(S/O FA·AR 조합 A/B 등급 자동화) 정립','AI 셀아웃 자동화 [1단계] 자동 Copy(W+2~W+52) 및 조정 허용 일정을 ’26.W43~으로 조정하고 지역 총괄·법인 공문 발송 추진','AI 셀아웃 [2단계](일부 구간 수정) 및 [3단계](수작업 조정 Block)는 전사 추진 보류에 따라 추후 일정 재수립 결정','계획생산·계획판매 관련 SIEL 동일 그룹 내 Shuffle 기능 개발 검증 진행(W42/43 배포 예정)'],next:['W43부터 AI 셀아웃 1단계 자동 Copy 적용 및 10월 중 권역별 4개 테넌트 통합 추진(’27.1Q 통합 View 구축)','구간별 일정범위 변경(슬러쉬·리퀴드) 기능 연말 목표 개발 및 GO와 세부 기준 구체화','무제한 변동 허용되는 DP와 SOP 간 Gap 분석을 위한 별도 생/판 Consensus Measure 추가 구현 및 GO 관리 양식 공유 확인']},
+      {n:11,name:'온라인 Price 크롤링, HA, HVAC 서비스 확대 검토',status:'진행중',owner:'김상석P',now:['한국 X사 사이트 최대혜택가격(쿠폰할인) 반영을 위한 API 세션 구조 분석 완료(W42)','한국 로봇청소기 G마켓 공식 셀러(팅크웨어모바일) 외 제외 기술 검토 완료(W41) 및 마스터 변경·매칭모델 등록·UI 데이터 검증 착수(W42~)','3개 법인(SEA/SSA/SEI) 11개 사이트 가격 이탈률(±30%·20%·10%) 1·2차 테스트 및 표준 Range 결정 검토(W42)','HA 전법인 확대(신규 22개 법인·55개 사이트) 계약 법무 검토 진행 및 11개 개발그룹 상세 개발 계획서 수립·확정(W42, SEASA/SEAS 일부 사이트 변경 검토)','RAC 신규 확대 5개 법인(한국·TSE·SIEL·SETK·SEI, 16개 사이트) 개발 계획서 작성 및 12월 초(W48) 목표 일정 조정 검토(W42)'],next:['한국 X사 최대혜택가격 갱신 로직 개발 및 데이터 수집 모니터링(W43~)','신규 55개 사이트 11개 그룹 병렬 개발 및 순차 오픈 추진: W43(SECZ, SEPCO) → W44(SELA-P, SEMAG) ~ W53(SEGR, SEUZ)','조리기기(6개 법인·25개 사이트) 및 RAC(5개 법인·16개 사이트) 12월 초까지 추가 개발 및 ’27년 전사 크롤링 내재화 계획 지속 협의']},
+      {n:12,name:'SAC, BO ~ AP1 연계 통한 예측 적확도 개선(Sales Force.com 활용 개선)',status:'보류/지연',owner:'',now:['에솔팀 내부 이슈로 W41까지 과제 보류 후 W42 에솔팀·혁신 간 과제 착수 재검토 및 협의 진행','SFDC Rollout Plan(Win·Solid)과 GSCM AP1 연계 및 S/I Guide(BO) 자동 Copy 필요사항 유지'],next:['법인별 SFDC Pricing 미사용 이슈 해소 방안 및 SFDC 기반 PSI 입력 관리 체계 재협의','에솔팀 협의 결과에 따라 S/I Guide(BO) → AP1 예측 자동 Copy 추진 일정 재수립']},
+      {n:13,name:'SEDA KD PSI 개선협의',status:'진행중',owner:'서윤P',now:['SEDA-P 에어컨 KD 재고 집계 수작업 오류 방지를 위한 ROH 시스템·실물 일치 여부 점검(W41~)','BOM 정보 연계 KD/ROH 레벨 재고 관리 시뮬레이션 진행(W41~)','현 수기관리 PSI vs KD 시뮬레이션 정합성 검증 및 보완 추진(~W42)'],next:['수기관리 PSI와 KD 시뮬레이션 간 정합성 검증·보완 완료','W43 중 BOM 정보 연계 KD/ROH 레벨 재고 관리방안 최종 확정 및 SCM 시스템 개발 협의(SEDA·선행구매·경영혁신)']},
+      {n:14,name:'Flakt 업무 이관 검토(HVAC 전략 → GO)',status:'진행중',owner:'서윤P',now:['자사·일반소싱·Flakt As-Is 업무 현황(PLC~수요~PO~물동) 비교 리뷰(10/6) 및 자회사 재등록 후 PO 생성 진행 확인','리뷰 결과 기반 관련부서 미팅 및 부서 간 R&R 재분배 검토 진행(W42)'],next:['HVAC 전략에서 GO로의 업무 이관 범위 및 부서별 R&R 최종 확정','이관 후속 프로세스(수주 확정 시 프로젝트성 모델 생성·소싱 PO·물동 관리) 정립']},
+      {n:15,name:'CFO DA 현안협의회',status:'진행중',owner:'',now:['10/12(월) 15:00~16:00 CFO DA 현안협의회 진행','9월말·10월말·12월말 기준 총재고·부진재고·유통재고 현황 및 빌트인 경영관리 기준 개선안 보고'],next:['현안협의회 논의 결과 및 CFO 지시사항 후속 조치 Follow-up','연말 재고 목표 달성 및 빌트인 관리 기준 적용 현황 지속 모니터링']}
+    ]
+  };
   const statusClass=s=>s==='진행중'?'progress':s==='예정'?'planned':'hold';
   const list=a=>`<ul>${a.map(x=>`<li>${x}</li>`).join('')}</ul>`;
   const stacked=value=>value?`<div class="stacked">${value.split(' · ').map(x=>`<span>${x}</span>`).join('')}</div>`:'';
   const reference=m=>`${m.note}${m.link?`<a class="reference-link" href="${m.link}" target="_blank" rel="noopener">${m.linkLabel}</a>`:''}`;
-  const weekMeta={W41:{label:'2026년 41주차',date:'2026.10.08',source:'가전 경영혁신 그룹 주차별 To-Do List_W41_20261008.xlsx',callout:'유통재고 상승 대응과 공급 제약 강화가 중심입니다. D.WOS 확정, AI 셀아웃 자동화 시작, 신규 모델 제약 편입이 차주 주요 일정입니다.'},W42:{label:'2026년 42주차',date:'2026.10.12',source:'가전 경영혁신 그룹 주차별 To-Do List_W42_20261012_0900.xlsx',callout:'HA·HVAC 부진재고 현황을 추가 점검하고, D.WOS 확정·AI 셀아웃 자동화·신규 모델 제약 편입을 추진합니다.'}};
+  const weekMeta={
+    W41:{label:'2026년 41주차',date:'2026.10.08',source:'가전 경영혁신 그룹 주차별 To-Do List_W41_20261008.xlsx',callout:'유통재고 상승 대응과 공급 제약 강화가 중심입니다. D.WOS 확정, AI 셀아웃 자동화 시작, 신규 모델 제약 편입이 차주 주요 일정입니다.'},
+    W42:{label:'2026년 42주차',date:'2026.10.16',source:'가전 경영혁신 그룹 주차별 To-Do List_W42_20261016_1600.xlsx',callout:'판매법인 부진재고(W41 BI 907억·10월말 예상 680억) 및 동·서남아 유통재고를 집중 점검하고, ’27년 D.WOS 확정·W43 AI 셀아웃 1단계 자동화·SSV Short 적용을 추진합니다.'}
+  };
   const taskMeta={
     1:{collab:'법인 · 영업전략 · 공조영업',start:'W41 이전',complete:'~연말',note:'D.WOS 10/15 확정 · T.WOS 11/3 확정'},
     2:{collab:'사업부 · 생산법인',start:'상시',complete:'상시',note:'W40 SOP 기준 소진 예상 34.5억원'},
@@ -102,7 +123,24 @@
     14:{collab:'HVAC 전략 · GO · 에솔팀',start:'W41',complete:'W42',note:'R/R 재분배 검토'},
     15:{collab:'CFO',start:'W41',complete:'10/12',note:'총재고·부진재고·유통재고 현안 협의'}
   };
-  const w42TaskMeta={...taskMeta,1:{...taskMeta[1],note:'HA 부진율 5.1%(비축 제외 5.0%), HVAC 18.5%(17.3%) · 인도 냉장고 WOS 11월말 adj 기준 +6.9주 점검 · HA/HVAC 부진재고 표 수치 반영'},3:{...taskMeta[3],note:'SIEL AX 협의: 지점·하위 유통 단위 AI 예측 요청 및 현지 담당자 컨콜 추진'},7:{...taskMeta[7],note:'SSV Short 개발 완료 후 W43 Plan 적용 예정 · 10월말까지 버퍼 축소 GO 협의'},10:{...taskMeta[10],note:'SIEL Shuffle 기능 W42/43 배포 검증 · SOP~DP Gap 분석용 Consensus Measure 개발'}};
+  const w42TaskMeta={
+    ...taskMeta,
+    1:{collab:'법인 · 영업전략 · 공조영업 · 한총',start:'상시',complete:'~연말',note:'W41 BI 부진재고 907억(8.6%, HA 5.0%·HVAC 17.0%) · 10월말 SCM 예상 680억(SEACE HVAC +12.4억) · 인도 냉장고 WOS 11월말 adj +6.9주 · 비정상 수요 관리(셀아웃 급변·과다 DP·무판매 모델 DP) 자동 감지 및 ’27년 Event 캘린더 기반 T.WOS 세팅 지시'},
+    2:{collab:'구매 · 영업 · NERP · 생산법인',start:'상시',complete:'상시',note:'W42부터 추가 생산 제안 상위 150개 모델 확대 · 장기 소진필요 자재 58억 시뮬레이션 및 불용자재 41억 SOP 변동 분석'},
+    3:{collab:'전사혁신 · AX팀 · 서남아RPM · SIEL',start:'상시',complete:'상시',note:'SIEL AX 협의(10/8): 지점·하위 유통 단위 AI 셀아웃 예측 검토 및 차주 현지 담당자 컨콜 추진'},
+    4:{collab:'에솔팀 · 법인 · 한국총괄',start:'W41 이전',complete:'W43',note:'8월말 재고 기준 SAC 할인율 글로벌 4.6%(유럽 5.5%, EHS 구모델 13.3%) · 빌트인 실판매 기준 2.6% · 10월 실적 W42 입수 및 대책 재입수(~W43)'},
+    5:{collab:'전사혁신 · 사업부 · RPM',start:'W36',complete:'상시',note:'SIG 등급 변경 후 제약 27만→41만대(+14만대) · RTS 12주 도래 신모델 W42 제약 편입 · 4대 지표 기반 적정수요 제약 대체 검토'},
+    6:{collab:'영업전략G · 판매법인 · GO',start:'W40 이전',complete:'상시',note:'10월 GO 회의용 분석 Data Dashboard 구현(HA 영업전략 의견 수렴 중) · 정렬 및 상위 합계 VOC 보완'},
+    7:{collab:'북미GO · IT · SEA',start:'W36',complete:'W43',note:'SSV Short GO 회의(10/8): PSI·SOP 시뮬레이션 검증 완료 · W43 Plan 적용 및 10월말까지 점진적 버퍼 제거 합의'},
+    8:{collab:'SEA · 전사SCM · 전사AX팀',start:'W38 이전',complete:'상시',note:'10/6 SEA Skill 제공 후 10/14 추가 프롬프트 공유 · SEA 자체 Agent 전파 요청(이승희P)'},
+    9:{collab:'에솔팀 · 지역영업',start:'W41',complete:'상시',note:'10/7 RAC 수요예측 리뷰 · 2Y+Optimal 결합 Hybrid 모델 도입 및 법인별 변수 커스터마이징'},
+    10:{collab:'전사혁신 · 마케팅 · AX · CX · GO',start:'W26',complete:'27년 1Q',note:'AI 셀아웃 1단계 자동 Copy W43 적용(2·3단계 전사 보류) · SIEL Shuffle W42/43 배포 · SOP~DP Gap Consensus Measure 구현 · W42 RTF 4Q 3,717M$(전주비 △48), 10월 1,290M$(△24)'},
+    11:{collab:'GTM · 공조영업 · 전사혁신 · 뉴엔AI',start:'W40',complete:'W53',note:'신규 22개 법인·55개 사이트 11개 그룹 병렬 개발 확정(W43~W53) · 한국 X사 쿠폰할인(W43) 및 G마켓 검증(W42~) · 조리기기·RAC 12월초(W48) 목표'},
+    12:{collab:'에솔팀 · 혁신',start:'W41 이전',complete:'미정',note:'에솔팀 내부 이슈로 W41 보류 후 W42 과제 착수 재검토·협의 진행'},
+    13:{collab:'SEDA · 선행구매 · 구매SCM',start:'W40',complete:'W43',note:'~W42 수기 PSI vs KD 시뮬레이션 정합성 검증 · W43 관리방안 확정 및 SCM 개발 협의'},
+    14:{collab:'HVAC 전략 · GO · 에솔팀 · 한총',start:'W40',complete:'W42',note:'10/6 비교 리뷰 기반 W42 관련부서 미팅 및 R/R 재분배 검토'},
+    15:{collab:'CFO · 지원팀',start:'W41',complete:'10/12',note:'10/12(월) 15:00~16:00 총재고·부진재고·유통재고 및 빌트인 관리기준 개선안 보고'}
+  };
   const weeklyTaskMeta={W41:taskMeta,W42:w42TaskMeta};
   let active='전체',selectedWeek='W42';
   function render(){const tasks=weeklyData[selectedWeek]||[];const metas=weeklyTaskMeta[selectedWeek];const q=document.querySelector('#search').value.trim().toLowerCase();const filtered=tasks.filter(t=>{const m=metas[t.n];return (active==='전체'||t.status===active)&&(!q||[t.name,t.owner,m.collab,m.start,m.complete,m.note,...t.now,...t.next].join(' ').toLowerCase().includes(q))});
