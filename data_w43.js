@@ -18,7 +18,7 @@ tasks:[
 {n:14,name:'Flakt 업무 이관 검토(HVAC 전략 → GO)',status:'진행중',owner:'서윤P',now:['As-is 업무 현황 비교 리뷰(10/6, 에솔팀 차우성P) 및 관련부서 미팅 후 R&R 재분배 협의 완료(42주)','프로세스·R&R 협의: 계약 체결 전 PO 선 발행 프로세스, 한시적으로 HVAC 전략·소싱그룹 병행 운영','시스템 운영 방안 협의: NERP와 Fläkt 시스템 직접 연계 불가, 현행 시스템·수기 병행 유지'],next:['Biz 확대 대응을 위한 Visibility 확보 방안 검토(NERP-PO·SRM-Invoice 및 수기 일정·물동 관리 병행)','계약서 기반 운영 프로세스 정립 및 수주 확대 시 계약/PO/물동 전 프로세스 일원화 R&R 재정립']},
 {n:15,name:'(HVAC 기업 M&A 지속 관련) PMA → 사업부 내부 조직화',status:'진행중',owner:'주경일P',now:['전사 「M&A - IT 분과 업무 가이드」 기준 사전 준비 및 PMA 지원 체계 검토','혁신 역할: M&A 업체 시스템 조사, 당사 시스템·운영 프로세스 연계 부분 지원'],next:['체크리스트 기반 실사: IT 조직/체계, 예산/투자/운영관리, 시스템/Infra','당사 8대 프로세스 기준 시스템 운영·기준정보·Infra·로드맵 현황 파악','시스템/프로세스 통합·전환 여부 의사결정 후 PMI 계획 수립 및 실행']}
 ],
-meta:{label:'2026년 43주차',date:'2026.10.23',source:'가전 경영혁신 그룹 주차별 To-Do List_W43_20261022_1830.xlsx',callout:'W42 BI 부진재고 840억(7.8%)과 서남아·동남아 유통재고 과다를 집중 점검하고, 북미 SSV Short 적용 보류에 따른 THD 버퍼 재협의(W44 S&OP)와 HA 전법인 크롤링 확대 법무 검토를 추진합니다.'},
+meta:{label:'2026년 43주차',date:'2026.10.23',source:'가전 경영혁신 그룹 주차별 To-Do List_W43_20261022_1830.xlsx'},
 taskMeta:{
 1:{collab:'영업전략 · 공조영업 · 한총 · 전사혁신',start:'상시',complete:'연말',note:['적정비 130% 초과: 냉장고 SEG·SIEL·SAVINA·SEPCO·SAMCOL\n세탁기 SEPOL·SAVINA·SEPCO·TSE·SAMCOL','HVAC 이슈 법인: SAVINA 34억(39.1%), SEPCO 15억(21.7%) 전주비 소폭 증가, 목표비 차질','연말 BI 목표: 10월 6.6% → 11월 6.3 → 12월 5.6(HA 3.9%, HVAC 8.8%)\n’27년 Global D.WOS 냉장고 7.2주, 세탁기 7.4주(’26년 동일)']},
 2:{collab:'구매 · 영업 · NERP · 생산법인',start:'상시',complete:'상시',note:['제안 조건: 손익률 0% 이상, WOS 7주 이내, SET 부진재고 9% 이하, 24주 SOP 물량 10% 내 증량','개선 요청(10/21): ① 추가 생산 제안 Simulation 개인화 ② PO PCR 조건(L/Time+Safety Time+4주↑) ③ SOP 변동 Raw 발췌','구매/영업 협업: GSCM Short(라인 Capa·자재·유통재고) 감안한 제안 수량 반영 필요\n법인 간 매각 시 이체 제안 정보 Knox 메일 발송 개선 요청']},
