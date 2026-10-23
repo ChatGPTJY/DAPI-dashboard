@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko"> 
+<html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,7 +23,7 @@
     .callout b{color:var(--navy)}.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0 14px}.search{flex:1;min-width:240px;position:relative}
     input,.week-select{height:44px;border:1px solid #d6dce5;border-radius:11px;font:inherit;background:#fff;outline:none}input{width:100%;padding:0 14px 0 40px}input:focus,.week-select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(47,111,237,.12)}.week-select{padding:0 34px 0 13px;font-weight:700;color:var(--navy);min-width:170px}
     .search:before{content:"⌕";position:absolute;left:14px;top:5px;font-size:24px;color:#748096}.filters{display:flex;gap:7px;flex-wrap:wrap}.filter{border:1px solid #d6dce5;background:#fff;color:#42526a;border-radius:999px;padding:9px 14px;font-weight:700;cursor:pointer}
-    .filter.active{background:var(--navy);border-color:var(--navy);color:#fff}.view-actions{margin-left:auto;display:flex;gap:7px}.ghost{border:1px solid #d6dce5;background:#fff;border-radius:10px;padding:9px 12px;cursor:pointer;color:#42526a;font-weight:700}
+    .filter.active{background:var(--navy);border-color:var(--navy);color:#fff}
     .table-shell{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 25px rgba(23,54,93,.055)}table{width:100%;border-collapse:separate;border-spacing:0;min-width:1080px}
     th{position:sticky;top:0;z-index:10;background:var(--navy);color:#fff;text-align:left;font-size:13px;padding:14px 15px;border-right:1px solid rgba(255,255,255,.18);white-space:nowrap;box-shadow:0 2px 5px rgba(23,54,93,.18)}th:last-child{border-right:0}
     td{vertical-align:top;padding:15px;border-bottom:1px solid var(--line);font-size:13.5px}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#fafcff}
@@ -34,7 +34,7 @@
     .foot{color:var(--muted);font-size:12px;margin-top:14px;display:flex;justify-content:space-between;gap:12px}.cards{display:none}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 6px 20px rgba(23,54,93,.05)}
     .card-head{display:flex;justify-content:space-between;gap:12px}.card h2{font-size:16px;color:var(--navy);margin:0}.meta{display:flex;gap:8px;margin-top:10px;color:var(--muted);font-size:12px}.section{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}.section h3{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:0 0 7px}
     @media(min-width:1121px){.table-shell{overflow:visible}}
-    @media(max-width:1120px){.wrap{width:min(100% - 24px,1480px)}.top{padding:30px 0 60px}.summary{grid-template-columns:repeat(2,1fr)}.table-shell{display:none}.cards{display:grid;grid-template-columns:1fr;gap:11px}.view-actions{display:none}.foot{display:block}.foot span{display:block;margin-top:4px}}
+    @media(max-width:1120px){.wrap{width:min(100% - 24px,1480px)}.top{padding:30px 0 60px}.summary{grid-template-columns:repeat(2,1fr)}.table-shell{display:none}.cards{display:grid;grid-template-columns:1fr;gap:11px}.foot{display:block}.foot span{display:block;margin-top:4px}}
     @media(max-width:520px){.summary{grid-template-columns:1fr 1fr;gap:9px}.metric{padding:14px}.metric .value{font-size:23px}.controls{align-items:stretch}.search{flex-basis:100%}.filters{width:100%}.filter{flex:1;padding:8px 7px;font-size:12px}.callout{font-size:13px}}
     @media print{body{background:#fff}.top{padding:18px 0;background:#fff!important;color:var(--ink);border-bottom:2px solid var(--navy)}.summary{margin:14px 0;grid-template-columns:repeat(4,1fr)}.metric{box-shadow:none;padding:10px}.callout,.controls,.foot{display:none}.table-shell{box-shadow:none;overflow:visible}.cards{display:none!important}table{min-width:0}th{position:static;background:#eaf0f8!important;color:var(--navy)}td,th{font-size:9px;padding:7px}.col-name{min-width:150px}.col-work,.col-next{min-width:210px}}
   </style>
@@ -55,12 +55,13 @@
       <div class="filters" role="group" aria-label="상태 필터">
         <button class="filter active" data-status="전체">전체</button><button class="filter" data-status="진행중">진행중</button><button class="filter" data-status="보류/지연">보류·지연</button><button class="filter" data-status="예정">예정</button>
       </div>
-      <div class="view-actions"><button class="ghost" onclick="window.print()">인쇄·PDF</button></div>
+      
     </div>
-    <div class="table-shell"><table><thead><tr><th class="col-name">업무명</th><th class="col-status">상태</th><th class="col-owner">담당자</th><th class="col-collab">협업부서</th><th class="col-start">Start</th><th class="col-complete">Complete</th><th class="col-reference">기타 참고사항</th></tr></thead><tbody id="taskRows"></tbody></table></div>
+    <div class="table-shell"><table><thead><tr><th class="col-name">업무명</th><th class="col-status">상태</th><th class="col-start">시작</th><th class="col-complete">완료</th><th class="col-owner">담당자</th><th class="col-collab">협업부서</th><th class="col-reference">기타 참고사항</th></tr></thead><tbody id="taskRows"></tbody></table></div>
     <div class="cards" id="taskCards"></div><div class="empty" id="empty">조건에 맞는 업무가 없습니다.</div>
     <div class="foot"><span id="sourceLabel">출처: 가전 경영혁신 그룹 주차별 To-Do List_W42_20261016_1600.xlsx · Week 42</span><span>담당자는 원본에 명시된 경우만 표시 · 협업부서와 일정은 원본 기재 기준으로 정리</span></div>
   </main>
+  <script src="data_w43.js"></script>
   <script>
   const weeklyData = {
     W41: [
@@ -143,10 +144,11 @@
   };
   const weeklyTaskMeta={W41:taskMeta,W42:w42TaskMeta};
   let active='전체',selectedWeek='W42';
+  if(window.W43_DATA){weeklyData.W43=W43_DATA.tasks;weekMeta.W43=W43_DATA.meta;weeklyTaskMeta.W43=W43_DATA.taskMeta;const sel=document.querySelector('#weekSelect');const o=document.createElement('option');o.value='W43';o.textContent='2026 W43 · 10월 22일';sel.insertBefore(o,sel.firstChild);sel.value='W43';selectedWeek='W43'}
   function render(){const tasks=weeklyData[selectedWeek]||[];const metas=weeklyTaskMeta[selectedWeek];const q=document.querySelector('#search').value.trim().toLowerCase();const filtered=tasks.filter(t=>{const m=metas[t.n];return (active==='전체'||t.status===active)&&(!q||[t.name,t.owner,m.collab,m.start,m.complete,m.note,...t.now,...t.next].join(' ').toLowerCase().includes(q))});
     document.querySelector('#totalCount').textContent=tasks.length;document.querySelector('#progressCount').textContent=tasks.filter(t=>t.status==='진행중').length;document.querySelector('#holdCount').textContent=tasks.filter(t=>t.status==='보류/지연').length;document.querySelector('#plannedCount').textContent=tasks.filter(t=>t.status==='예정').length;document.querySelector('#weekCountHint').textContent=`누적 ${Object.keys(weeklyData).length}개 주차`;const meta=weekMeta[selectedWeek];document.querySelector('#currentWeekLabel').textContent=`현재 조회: ${meta.label} · 원본 업무 순서 유지 · 최종 기준 ${meta.date}`;document.querySelector('#sourceLabel').textContent=`출처: ${meta.source} · ${selectedWeek}`;document.querySelector('#weekCallout').innerHTML=`<div>●</div><div><b>${selectedWeek} 핵심:</b> ${meta.callout}</div>`;
-    document.querySelector('#taskRows').innerHTML=filtered.map(t=>{const m=metas[t.n];return `<tr class="task-main"><td><div class="task-name">${t.n}. ${t.name}</div></td><td><span class="badge ${statusClass(t.status)}">${t.status}</span></td><td>${stacked(t.owner)}</td><td>${stacked(m.collab)}</td><td>${m.start}</td><td>${m.complete}</td><td>${reference(m)}</td></tr><tr class="task-detail"><td colspan="7"><div class="detail-grid"><section class="detail-box"><h3>당주 진행사항</h3>${list(t.now)}</section><section class="detail-box"><h3>향후 계획</h3>${list(t.next)}</section></div></td></tr>`}).join('');
-    document.querySelector('#taskCards').innerHTML=filtered.map(t=>{const m=metas[t.n];return `<article class="card"><div class="card-head"><h2>${t.n}. ${t.name}</h2><span class="badge ${statusClass(t.status)}">${t.status}</span></div><div class="meta">${t.owner?`담당자${stacked(t.owner)}`:'담당자'}${m.collab?`　협업부서${stacked(m.collab)}`:''}　Start · ${m.start}　Complete · ${m.complete}</div><div class="section"><h3>당주 진행사항</h3>${list(t.now)}</div><div class="section"><h3>향후 계획</h3>${list(t.next)}</div><div class="section"><h3>기타 참고사항</h3>${reference(m)}</div></article>`}).join('');
+    document.querySelector('#taskRows').innerHTML=filtered.map(t=>{const m=metas[t.n];return `<tr class="task-main"><td><div class="task-name">${t.n}. ${t.name}</div></td><td><span class="badge ${statusClass(t.status)}">${t.status}</span></td><td>${m.start}</td><td>${m.complete}</td><td>${stacked(t.owner)}</td><td>${stacked(m.collab)}</td><td>${reference(m)}</td></tr><tr class="task-detail"><td colspan="7"><div class="detail-grid"><section class="detail-box"><h3>당주 진행사항</h3>${list(t.now)}</section><section class="detail-box"><h3>향후 계획</h3>${list(t.next)}</section></div></td></tr>`}).join('');
+    document.querySelector('#taskCards').innerHTML=filtered.map(t=>{const m=metas[t.n];return `<article class="card"><div class="card-head"><h2>${t.n}. ${t.name}</h2><span class="badge ${statusClass(t.status)}">${t.status}</span></div><div class="meta">시작 · ${m.start}　완료 · ${m.complete}　${t.owner?`담당자${stacked(t.owner)}`:'담당자'}${m.collab?`　협업부서${stacked(m.collab)}`:''}</div><div class="section"><h3>당주 진행사항</h3>${list(t.now)}</div><div class="section"><h3>향후 계획</h3>${list(t.next)}</div><div class="section"><h3>기타 참고사항</h3>${reference(m)}</div></article>`}).join('');
     document.querySelector('#empty').style.display=filtered.length?'none':'block';
   }
   document.querySelector('#weekSelect').addEventListener('change',e=>{selectedWeek=e.target.value;document.querySelector('#search').value='';render()});document.querySelector('#search').addEventListener('input',render);document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');active=b.dataset.status;render()}));render();
