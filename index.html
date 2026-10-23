@@ -27,7 +27,7 @@
     .table-shell{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 25px rgba(23,54,93,.055)}table{width:100%;border-collapse:separate;border-spacing:0;min-width:1080px}
     th{position:sticky;top:0;z-index:10;background:var(--navy);color:#fff;text-align:left;font-size:13px;padding:14px 15px;border-right:1px solid rgba(255,255,255,.18);white-space:nowrap;box-shadow:0 2px 5px rgba(23,54,93,.18)}th:last-child{border-right:0}
     td{vertical-align:top;padding:15px;border-bottom:1px solid var(--line);font-size:13.5px}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#fafcff}
-    .col-name{width:28%;min-width:245px}.col-status{width:8%;min-width:78px}.col-owner{width:11%;min-width:95px}.col-collab{width:15%;min-width:125px}.col-start,.col-complete{width:9%;min-width:78px}.col-reference{width:9%;min-width:104px;text-align:center}
+    .col-name{width:34.5%;min-width:270px}.col-status{width:8%;min-width:84px}.col-start{width:9.1%;min-width:70px}.col-owner{width:12.3%;min-width:95px}.col-collab{width:16.9%;min-width:125px}.col-start,.col-complete{width:9.1%;min-width:70px}.col-reference{width:10.1%;min-width:104px;text-align:center}
     .task-name{font-weight:800;color:var(--navy);letter-spacing:-.015em}.stacked{line-height:1.55}.stacked span{display:block}.stacked span+span{margin-top:3px}.task-main td{border-bottom:0;padding-bottom:9px}.task-detail td{padding-top:0;border-bottom:1px solid var(--line)}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.detail-box{background:#f8faff;border:1px solid #e2e9f4;border-radius:10px;padding:12px 14px;min-width:0}.detail-box h3{color:var(--navy);font-size:12px;margin:0 0 9px}.detail-box ul{font-size:13.5px}.reference-link{display:inline-block;margin-top:8px;color:var(--blue);font-weight:800;font-size:12px;text-decoration:none}.reference-link:hover{text-decoration:underline}.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:800;white-space:nowrap}
     .badge:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}.progress{color:var(--green);background:var(--green-soft)}.hold{color:var(--red);background:var(--red-soft)}.planned{color:var(--amber);background:var(--amber-soft)}
     ul{margin:0;padding-left:17px}li+li{margin-top:5px}.empty{display:none;text-align:center;color:var(--muted);padding:42px;background:#fff;border-radius:14px;border:1px solid var(--line)}
@@ -38,6 +38,8 @@
     @media(max-width:520px){.summary{grid-template-columns:1fr 1fr;gap:9px}.metric{padding:14px}.metric .value{font-size:23px}.controls{align-items:stretch}.search{flex-basis:100%}.filters{width:100%}.filter{flex:1;padding:8px 7px;font-size:12px}.callout{font-size:13px}}
     @media print{body{background:#fff}.top{padding:18px 0;background:#fff!important;color:var(--ink);border-bottom:2px solid var(--navy)}.summary{margin:14px 0;grid-template-columns:repeat(4,1fr)}.metric{box-shadow:none;padding:10px}.callout,.controls,.foot{display:none}.table-shell{box-shadow:none;overflow:visible}.cards{display:none!important}table{min-width:0}th{position:static;background:#eaf0f8!important;color:var(--navy)}td,th{font-size:9px;padding:7px}.col-name{min-width:150px}.col-work,.col-next{min-width:210px}}
 
+    th.col-status,th.col-start,th.col-complete,th.col-owner,th.col-collab{text-align:center}
+    .task-main td:nth-child(n+2):nth-child(-n+6){text-align:center}
     .note-cell{text-align:center;vertical-align:top}
     .note-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid #d6dce5;border-radius:10px;background:#fff;color:#28507f;cursor:pointer;transition:background .15s,border-color .15s}
     .note-btn:hover,.note-btn[aria-expanded="true"]{background:#eaf1fb;border-color:#9db8dd}
@@ -60,7 +62,6 @@
     <div class="metric"><div class="label">예정</div><div class="value" style="color:var(--amber)" id="plannedCount">0</div><div class="hint">일정 확정</div></div>
   </div>
   <main class="wrap">
-    <div class="callout" id="weekCallout"><div>●</div><div><b>W42 핵심:</b> 판매법인 부진재고(W41 BI 907억·10월말 예상 680억) 및 동·서남아 유통재고를 집중 점검하고, ’27년 D.WOS 확정·W43 AI 셀아웃 1단계 자동화·SSV Short 적용을 추진합니다.</div></div>
     <div class="controls">
       <select id="weekSelect" class="week-select" aria-label="조회 주차"><option value="W42" selected>2026 W42</option><option value="W41">2026 W41</option></select>
       <div class="search"><input id="search" type="search" placeholder="업무명·진행사항·차주계획 검색" aria-label="업무 검색" /></div>
@@ -120,8 +121,8 @@
   const stacked=value=>value?`<div class="stacked">${value.split(' · ').map(x=>`<span>${x}</span>`).join('')}</div>`:'';
   const reference=m=>list(noteItems(m));
   const weekMeta={
-    W41:{label:'2026년 41주차',date:'2026.10.08',source:'가전 경영혁신 그룹 주차별 To-Do List_W41_20261008.xlsx',callout:'유통재고 상승 대응과 공급 제약 강화가 중심입니다. D.WOS 확정, AI 셀아웃 자동화 시작, 신규 모델 제약 편입이 차주 주요 일정입니다.'},
-    W42:{label:'2026년 42주차',date:'2026.10.16',source:'가전 경영혁신 그룹 주차별 To-Do List_W42_20261016_1600.xlsx',callout:'판매법인 부진재고(W41 BI 907억·10월말 예상 680억) 및 동·서남아 유통재고를 집중 점검하고, ’27년 D.WOS 확정·W43 AI 셀아웃 1단계 자동화·SSV Short 적용을 추진합니다.'}
+    W41:{label:'2026년 41주차',date:'2026.10.08',source:'가전 경영혁신 그룹 주차별 To-Do List_W41_20261008.xlsx'},
+    W42:{label:'2026년 42주차',date:'2026.10.16',source:'가전 경영혁신 그룹 주차별 To-Do List_W42_20261016_1600.xlsx'}
   };
   const taskMeta={
     1:{collab:'법인 · 영업전략 · 공조영업',start:'W41 이전',complete:'~연말',note:'D.WOS 10/15 확정 · T.WOS 11/3 확정'},
@@ -176,7 +177,7 @@
     list.forEach(w=>{const s=document.createElement('script');s.src='data_'+String(w).toLowerCase()+'.js';s.onload=s.onerror=()=>{if(--pending===0)finish()};document.head.appendChild(s)});
   }
   function render(){closePop();const tasks=weeklyData[selectedWeek]||[];const metas=weeklyTaskMeta[selectedWeek];const q=document.querySelector('#search').value.trim().toLowerCase();const filtered=tasks.filter(t=>{const m=metas[t.n];return (active==='전체'||t.status===active)&&(!q||[t.name,t.owner,m.collab,m.start,m.complete,m.note,...t.now,...t.next].join(' ').toLowerCase().includes(q))});
-    document.querySelector('#totalCount').textContent=tasks.length;document.querySelector('#progressCount').textContent=tasks.filter(t=>t.status==='진행중').length;document.querySelector('#holdCount').textContent=tasks.filter(t=>t.status==='보류/지연').length;document.querySelector('#plannedCount').textContent=tasks.filter(t=>t.status==='예정').length;document.querySelector('#weekCountHint').textContent=`누적 ${Object.keys(weeklyData).length}개 주차`;const meta=weekMeta[selectedWeek];document.querySelector('#currentWeekLabel').textContent=`현재 조회: ${meta.label} · 마지막 업데이트 ${meta.date}`;document.querySelector('#sourceLabel').textContent=`출처: ${meta.source} · ${selectedWeek}`;document.querySelector('#weekCallout').innerHTML=`<div>●</div><div><b>${selectedWeek} 핵심:</b> ${meta.callout}</div>`;
+    document.querySelector('#totalCount').textContent=tasks.length;document.querySelector('#progressCount').textContent=tasks.filter(t=>t.status==='진행중').length;document.querySelector('#holdCount').textContent=tasks.filter(t=>t.status==='보류/지연').length;document.querySelector('#plannedCount').textContent=tasks.filter(t=>t.status==='예정').length;document.querySelector('#weekCountHint').textContent=`누적 ${Object.keys(weeklyData).length}개 주차`;const meta=weekMeta[selectedWeek];document.querySelector('#currentWeekLabel').textContent=`현재 조회: ${meta.label} · 마지막 업데이트 ${meta.date}`;document.querySelector('#sourceLabel').textContent=`출처: ${meta.source} · ${selectedWeek}`;
     document.querySelector('#taskRows').innerHTML=filtered.map(t=>{const m=metas[t.n];return `<tr class="task-main"><td><div class="task-name">${t.n}. ${nm(t.name)}</div></td><td><span class="badge ${statusClass(t.status)}">${t.status}</span></td><td>${m.start}</td><td>${m.complete}</td><td>${stacked(t.owner)}</td><td>${stacked(m.collab)}</td><td class="note-cell">${noteBtn(t,m)}</td></tr><tr class="task-detail"><td colspan="7"><div class="detail-grid"><section class="detail-box"><h3>당주 진행사항</h3>${list(t.now)}</section><section class="detail-box"><h3>향후 계획</h3>${list(t.next)}</section></div></td></tr>`}).join('');
     document.querySelector('#taskCards').innerHTML=filtered.map(t=>{const m=metas[t.n];return `<article class="card"><div class="card-head"><h2>${t.n}. ${nm(t.name)}</h2><span class="badge ${statusClass(t.status)}">${t.status}</span></div><div class="meta">시작 · ${m.start}　완료 · ${m.complete}　${t.owner?`담당자${stacked(t.owner)}`:'담당자'}${m.collab?`　협업부서${stacked(m.collab)}`:''}</div><div class="section"><h3>당주 진행사항</h3>${list(t.now)}</div><div class="section"><h3>향후 계획</h3>${list(t.next)}</div><div class="section"><h3>기타 참고사항</h3>${reference(m)}</div></article>`}).join('');
     document.querySelector('#empty').style.display=filtered.length?'none':'block';
