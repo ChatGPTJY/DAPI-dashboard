@@ -61,7 +61,7 @@
     <div class="cards" id="taskCards"></div><div class="empty" id="empty">조건에 맞는 업무가 없습니다.</div>
     <div class="foot"><span id="sourceLabel">출처: 가전 경영혁신 그룹 주차별 To-Do List_W42_20261016_1600.xlsx · Week 42</span><span>담당자는 원본에 명시된 경우만 표시 · 협업부서와 일정은 원본 기재 기준으로 정리</span></div>
   </main>
-  <script src="data_w43.js"></script>
+  <script src="weeks.js"></script>
   <script>
   const weeklyData = {
     W41: [
@@ -144,14 +144,28 @@
   };
   const weeklyTaskMeta={W41:taskMeta,W42:w42TaskMeta};
   let active='전체',selectedWeek='W42';
-  if(window.W43_DATA){weeklyData.W43=W43_DATA.tasks;weekMeta.W43=W43_DATA.meta;weeklyTaskMeta.W43=W43_DATA.taskMeta;const sel=document.querySelector('#weekSelect');const o=document.createElement('option');o.value='W43';o.textContent='2026 W43 · 10월 22일';sel.insertBefore(o,sel.firstChild);sel.value='W43';selectedWeek='W43'}
+  const weekLabels={W41:'2026 W41 · 10월 8일',W42:'2026 W42 · 10월 16일'};
+  function loadWeeks(done){
+    const list=Array.isArray(window.WEEKS_LIST)?window.WEEKS_LIST:[];
+    const finish=()=>{
+      const store=window.WEEK_DATA||{};
+      Object.keys(store).forEach(w=>{const d=store[w];if(d&&d.tasks&&d.meta&&d.taskMeta){weeklyData[w]=d.tasks;weekMeta[w]=d.meta;weeklyTaskMeta[w]=d.taskMeta;weekLabels[w]=d.label||('2026 '+w)}});
+      const weeks=Object.keys(weeklyData).sort((a,b)=>parseInt(b.slice(1))-parseInt(a.slice(1)));
+      const sel=document.querySelector('#weekSelect');
+      sel.innerHTML=weeks.map(w=>`<option value="${w}">${weekLabels[w]||w}</option>`).join('');
+      selectedWeek=weeks[0];sel.value=selectedWeek;done();
+    };
+    let pending=list.length;
+    if(!pending){finish();return}
+    list.forEach(w=>{const s=document.createElement('script');s.src='data_'+String(w).toLowerCase()+'.js';s.onload=s.onerror=()=>{if(--pending===0)finish()};document.head.appendChild(s)});
+  }
   function render(){const tasks=weeklyData[selectedWeek]||[];const metas=weeklyTaskMeta[selectedWeek];const q=document.querySelector('#search').value.trim().toLowerCase();const filtered=tasks.filter(t=>{const m=metas[t.n];return (active==='전체'||t.status===active)&&(!q||[t.name,t.owner,m.collab,m.start,m.complete,m.note,...t.now,...t.next].join(' ').toLowerCase().includes(q))});
     document.querySelector('#totalCount').textContent=tasks.length;document.querySelector('#progressCount').textContent=tasks.filter(t=>t.status==='진행중').length;document.querySelector('#holdCount').textContent=tasks.filter(t=>t.status==='보류/지연').length;document.querySelector('#plannedCount').textContent=tasks.filter(t=>t.status==='예정').length;document.querySelector('#weekCountHint').textContent=`누적 ${Object.keys(weeklyData).length}개 주차`;const meta=weekMeta[selectedWeek];document.querySelector('#currentWeekLabel').textContent=`현재 조회: ${meta.label} · 원본 업무 순서 유지 · 최종 기준 ${meta.date}`;document.querySelector('#sourceLabel').textContent=`출처: ${meta.source} · ${selectedWeek}`;document.querySelector('#weekCallout').innerHTML=`<div>●</div><div><b>${selectedWeek} 핵심:</b> ${meta.callout}</div>`;
     document.querySelector('#taskRows').innerHTML=filtered.map(t=>{const m=metas[t.n];return `<tr class="task-main"><td><div class="task-name">${t.n}. ${t.name}</div></td><td><span class="badge ${statusClass(t.status)}">${t.status}</span></td><td>${m.start}</td><td>${m.complete}</td><td>${stacked(t.owner)}</td><td>${stacked(m.collab)}</td><td>${reference(m)}</td></tr><tr class="task-detail"><td colspan="7"><div class="detail-grid"><section class="detail-box"><h3>당주 진행사항</h3>${list(t.now)}</section><section class="detail-box"><h3>향후 계획</h3>${list(t.next)}</section></div></td></tr>`}).join('');
     document.querySelector('#taskCards').innerHTML=filtered.map(t=>{const m=metas[t.n];return `<article class="card"><div class="card-head"><h2>${t.n}. ${t.name}</h2><span class="badge ${statusClass(t.status)}">${t.status}</span></div><div class="meta">시작 · ${m.start}　완료 · ${m.complete}　${t.owner?`담당자${stacked(t.owner)}`:'담당자'}${m.collab?`　협업부서${stacked(m.collab)}`:''}</div><div class="section"><h3>당주 진행사항</h3>${list(t.now)}</div><div class="section"><h3>향후 계획</h3>${list(t.next)}</div><div class="section"><h3>기타 참고사항</h3>${reference(m)}</div></article>`}).join('');
     document.querySelector('#empty').style.display=filtered.length?'none':'block';
   }
-  document.querySelector('#weekSelect').addEventListener('change',e=>{selectedWeek=e.target.value;document.querySelector('#search').value='';render()});document.querySelector('#search').addEventListener('input',render);document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');active=b.dataset.status;render()}));render();
+  document.querySelector('#weekSelect').addEventListener('change',e=>{selectedWeek=e.target.value;document.querySelector('#search').value='';render()});document.querySelector('#search').addEventListener('input',render);document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');active=b.dataset.status;render()}));loadWeeks(render);
   </script>
 </body>
 </html>
